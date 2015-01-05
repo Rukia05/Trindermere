@@ -3,9 +3,16 @@ div#colDonnees
     float:right;
 }
  
-/*div#map-canvas
+div#map-canvas
 {
+    height:100%;
+    width:60%;
     float:left;
-    margin: 0;
-    padding: 0;
-}*/
+    margin: 0px;
+    padding: 0px;
+}
+
+.map-container
+{
+    height:100%;
+}

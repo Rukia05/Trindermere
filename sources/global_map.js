@@ -1,7 +1,5 @@
-    
-    
-        var map;
-        var listeLocations = [];
+           var map;
+        var listeLocations = []; 
         
         function initialize() {
           var myLatlng = new google.maps.LatLng(45.777399, 4.855150);
@@ -27,3 +25,4 @@
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
+            
