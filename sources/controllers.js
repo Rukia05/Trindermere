@@ -12,9 +12,9 @@ carteApp.controller('MainCtrl',['$scope',function ($scope) {
             url: 'https://rencontres-arbres.herokuapp.com/api/trees/AR17026/',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            username: 'arborphile',
-            password: 'ilovetrees',
-            type: 'PUT',
+            username: "arborphile",
+            password: "ilovetrees",
+            type: "PUT",
             data: '{"name":"fjdlk fhg"}';
         });
         alert("ajouter dans la base : "+latitude+','+longitude+','+identifiant);
