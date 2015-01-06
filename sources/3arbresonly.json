@@ -1,0 +1,40 @@
+{
+    "count":8209,
+    "next":"http://rencontres-arbres.herokuapp.com/api/trees/?page=2",
+    "previous":null,
+    "results":[
+        {
+            "url":"http://rencontres-arbres.herokuapp.com/api/trees/AR18291/",
+            "name":"Frêne commun",
+            "area":"Parc de la Tête d'Or",
+            "height":8,
+            "trunk_diameter":12,
+            "crown_diameter":3,
+            "longitude":4.845850467681885,
+            "latitude":45.77736933535682,
+            "genre":"http://rencontres-arbres.herokuapp.com/api/tree_genres/58/"
+        },
+        {
+            "url":"http://rencontres-arbres.herokuapp.com/api/trees/AR18292/",
+            "name":"Aubépine monogyne",
+            "area":"Parc de la Tête d'Or",
+            "height":7,
+            "trunk_diameter":14,
+            "crown_diameter":3,
+            "longitude":4.857072830200195,
+            "latitude":45.78344317354875,
+            "genre":"http://rencontres-arbres.herokuapp.com/api/tree_genres/59/"
+        }
+        ,
+        {
+            "url":"http://rencontres-arbres.herokuapp.com/api/trees/AR18293/",
+            "name":"Erable indéterminé",
+            "area":"Parc de la Tête d'Or",
+            "height":11,
+            "trunk_diameter":20,
+            "crown_diameter":6,
+            "longitude":4.854626655578613,
+            "latitude":45.778145671235144,
+            "genre":"http://rencontres-arbres.herokuapp.com/api/tree_genres/60/"
+        }]
+}
