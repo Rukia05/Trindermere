@@ -15,6 +15,7 @@ body
 div#colDonnees
 {
     float:right;
+    width:35%;
 }
  
 div#map-canvas
