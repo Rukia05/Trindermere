@@ -12,25 +12,52 @@
     
 
         <div class="col-md-4">
-            <h1>Coordonnées</h1>
-            <form ng-submit="majPosition()" >
-                <div class="form-group">
-                    <label for="latInput">Latitude</label>
-                    <input type="text" class="form-control" id="latInput" placeholder="Latitude">
-                </div>
-                <div class="form-group">
-                    <label for="longInput">Longitude</label>
-                    <input type="text" class="form-control" id="longInput" placeholder="Longitude">
-                </div>
-                <div class="form-group">
-                    <label for="idInput">Numéro d'identification de l'arbre</label>
-                    <input type="text" class="form-control" id="idInput" ng-model="idarbre" placeholder="Identifiant">
-                </div>
-                <div class="form-group">
-                    <input type="button" name="addBase" value="Ajouter" ng-click="addBase(latitude,longitude,idarbre)" class="btn btn-default">
-                </div>
-            </form>
+            <div ng-controller="TreePatchCtrl" class="row">
+                <h1>Coordonnées</h1>
+                <form ng-submit="patch()" >
+                    <div class="form-group">
+                        <label for="latInput">Latitude</label>
+                        <input type="text" class="form-control" id="latInput"  placeholder="Latitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="longInput">Longitude</label>
+                        <input type="text" class="form-control" id="longInput" placeholder="Longitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="idInput">Numéro d'identification de l'arbre</label>
+                        <input type="text" class="form-control" id="idInput" ng-model="idarbre" placeholder="Identifiant">
+                    </div>
+                    <div class="form-group">
+                        <input type="button" name="patch" value="Ajouter" ng-click="patch(latitude,longitude,idarbre)" class="btn btn-default">
+                    </div>
+                </form>
+            </div>
+            <div ng-controller="TreeListCtrl" class="row">
+        <table class="table">
+          <thead>
+            <th>Name</th>
+            <th>Area</th>
+            <th>Height</th>
+            <th>Trunk diameter</th>
+            <th>Crown diameter</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="tree in trees">
+            <td>{{tree.name}}</td>
+            <td>{{tree.area}}</td>
+            <td>{{tree.height}}</td>
+            <td>{{tree.trunk_diameter}}</td>
+            <td>{{tree.crown_diameter}}</td>
+            <td>{{tree.longitude}}</td>
+            <td>{{tree.latitude}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
         </div>
+
                
                 <div class="col-md-8 map-container" ng-controller="MainCtrl">
                     <h1>Localisation</h1>
@@ -38,11 +65,13 @@
         </div>
 
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBTdqNFiZZ9i0lEZlUEwE8Hpu7YNfxxXf8"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="./global_map.js"></script>
         <script src="./controllers.js"></script>
+        <script src="./service.js"></script>
+
 
     </body>
 </html>
