@@ -11,7 +11,7 @@ carteApp.service('API', function($http, $q) {
             var innerDeferred = $q.defer();
             $http.get(url).then(function(response) {
               var trees = response.data.results;
-              //deferred.notify(trees);
+              deferred.notify(trees);
 
               // Recurse for pagination
               if (response.data.next) {
