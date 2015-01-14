@@ -16,16 +16,12 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
             var data = {longitude: longInput.value, latitude: latInput.value};
             console.log("data " + data);
             API.patchTree(id, data).then(function() {
-              $scope.messages.push({
-                type: 'success',
-                message: 'Tree ' + id + ' patched'
-              });
+                console.log("Tree " + id + "succesfully patched")
             });
           };
         });
 
 carteApp.controller('MainCtrl', function ($scope, API) {
-	console.log("ici c'est le main");
     $scope.title = "PDC8 - Carte"
     $scope.latitude = "";
     $scope.longitude = "";
