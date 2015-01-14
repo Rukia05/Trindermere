@@ -1,1 +1,0 @@
-Dans le dossier "noserver" se trouve le code rédigé sans l'intervention d'un serveur Python.
