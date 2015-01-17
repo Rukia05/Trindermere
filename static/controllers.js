@@ -14,10 +14,25 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
     $scope.patch = function() {
             var id = $scope.idarbre;
             var data = {longitude: longInput.value, latitude: latInput.value};
-            console.log("data " + data);
-            API.patchTree(id, data).then(function() {
-                console.log("Tree " + id + "succesfully patched")
-            });
+
+            var longitudeNumber = parseFloat(longInput.value.replace(",","."));
+            var latitudeNumber = parseFloat(latInput.value.replace(",","."));
+            
+            console.log("longitude " + longitudeNumber + " " + typeof longitudeNumber);
+            console.log("latitude " + latitudeNumber + " " + typeof latitudeNumber);
+            
+            if (longInput.value == "" || latInput.value == "" || id == "") {
+                // TODO : améliorer le rendu visuel du message d'erreur (pas d'"alert")
+                alert("Les champs ne sont pas tous remplis");
+            } else if (isNaN(longitudeNumber) || isNaN(latitudeNumber)) {
+                // TODO : améliorer le rendu visuel du message d'erreur (pas d'"alert")
+                alert("Les champs ne sont pas corrects");
+            } else {
+                API.patchTree(id, data).then(function() {
+                    console.log("Tree " + id + "succesfully patched")
+                });
+            }
+            
           };
         });
 
