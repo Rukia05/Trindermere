@@ -31,31 +31,48 @@
                         <input type="button" name="patch" value="Mettre à jour" ng-click="patch(latitude,longitude,idarbre)" class="btn btn-default">
                     </div>
                 </form>
-            </div>
-            <div ng-controller="TreeListCtrl" class="row">
-        <table class="table">
-          <thead>
-            <th>Name</th>
-            <th>Area</th>
-            <th>Height</th>
-            <th>Trunk diameter</th>
-            <th>Crown diameter</th>
-            <th>Longitude</th>
-            <th>Latitude</th>
-          </thead>
-          <tbody>
-            <tr ng-repeat="tree in trees">
-            <td>{{tree.name}}</td>
-            <td>{{tree.area}}</td>
-            <td>{{tree.height}}</td>
-            <td>{{tree.trunk_diameter}}</td>
-            <td>{{tree.crown_diameter}}</td>
-            <td>{{tree.longitude}}</td>
-            <td>{{tree.latitude}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                <form class="navbar-form navbar-left" role="search">
+
+                    <div ng-class="{'input-group': searchText}">
+                        <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Rechercher" ng-model="searchText" />
+                        <!--<div class="input-group-addon btn" ng-click="search()" ng-if="searchText">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </div>
+                        <div class="input-group-addon btn" ng-click="reset()" ng-if="searchText">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </div>-->
+                    
+
+
+
+                   <div ng-controller="TreeListCtrl" class="row">
+                        <table id="searchObjResults">
+                            <thead>
+                                <th>Name</th>
+                                <th>Area</th>
+                                <th>Height</th>
+                                <th>Trunk diameter</th>
+                                <th>Crown diameter</th>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="tree in trees | filter:searchText">
+                                    <td>{{tree.name}}</td>
+                                    <td>{{tree.area}}</td>
+                                    <td>{{tree.height}}</td>
+                                    <td>{{tree.trunk_diameter}}</td>
+                                    <td>{{tree.crown_diameter}}</td>
+                                    <td>{{tree.longitude}}</td>
+                                    <td>{{tree.latitude}}</td>
+                                </tr>
+                            </tbody>
+                          </tr>
+                        </table>
+                    </div>
+                    </div>
+                </form>
+        </div>
         </div>
 
                

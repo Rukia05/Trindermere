@@ -1,4 +1,4 @@
-carteApp.controller('TreeListCtrl', function($scope, API) {
+carteApp.controller('TreeListCtrl', function($scope, API, $filter) {
     $scope.trees = [];
     API.getTrees().then(function(trees) {
         console.log("tree list fully loaded");
