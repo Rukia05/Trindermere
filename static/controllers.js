@@ -4,6 +4,14 @@ carteApp.controller('TreeListCtrl', function($scope, API, $filter) {
         var doub = false;
         console.log("tree list fully loaded");
         $scope.trees = trees;
+        //on contruit une map qui contient l'ID en clé et l'arbre en valeur
+        $scope.mapTrees = {};
+        indexID = 49 //l'URL avant l'ID est composé de 50 caractères 
+        for (var i=0; i<trees.length; i++)
+        {
+            var idTree = trees[i].url.substring(indexID, trees[i].url.lenght-1);
+            $scope.mapTrees[idTree] = trees[i];
+        }
         //console.log("url "+ trees[200].url);
         for(i=0; i<trees.length;i++){
             for(j=0;j<trees.length;j++){
@@ -29,6 +37,7 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
     $scope.patch = function() {
             var id = $scope.idarbre;
             var data = {longitude: longInput.value, latitude: latInput.value};
+            //var treesDataBase = $scope.trees;
 
             var longitudeNumber = parseFloat(longInput.value.replace(",","."));
             var latitudeNumber = parseFloat(latInput.value.replace(",","."));
@@ -36,6 +45,11 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
             console.log("longitude " + longitudeNumber + " " + typeof longitudeNumber);
             console.log("latitude " + latitudeNumber + " " + typeof latitudeNumber);
             
+            if (!(id in mapTrees))
+            {
+                alert("ID de l'arbre inexistant");
+            }
+
             if (longInput.value == "" || latInput.value == "" || id == "") {
                 // TODO : améliorer le rendu visuel du message d'erreur (pas d'"alert")
                 alert("Les champs ne sont pas tous remplis");
