@@ -38,7 +38,26 @@
 
 
 
+
                    <div ng-controller="TreeListCtrl" class="row">
+                        <table id="doublons">
+                            <thead>
+                                <th>Identifiant</th>
+                                <th>Longitude première occurrence</th>
+                                <th>Latitude première occurrence</th>
+                                <th>Longitude deuxième occurrence</th>
+                                <th>Latitude deuxième occurrence</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(id, dups) in  data">
+                                        <td>{{id}}</td>
+                                        <td>{{dups[0].longitude}}</td>
+                                        <td>{{dups[0].latitude}}</td>
+                                        <td>{{dups[1].longitude}}</td>
+                                        <td>{{dups[0].latitude}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <table id="searchObjResults">
                             <thead>
                                 <th>Identifiant</th>
@@ -69,6 +88,7 @@
                 </form>
         </div>
         </div>
+
 
                
                 <div class="col-md-4 map-container" ng-controller="MainCtrl">
