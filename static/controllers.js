@@ -2,10 +2,9 @@
 
 mapTrees = {};
 
-carteApp.controller('TreeListCtrl', function($scope, API, $filter) {
+carteApp.controller('TreeListCtrl', function($scope, API, $filter, $http) {
     $scope.trees = [];
     API.getTrees().then(function(trees) {
-        var doub = false;
         console.log("tree list fully loaded");
         $scope.trees = trees;
 
@@ -15,18 +14,6 @@ carteApp.controller('TreeListCtrl', function($scope, API, $filter) {
         {
             var idTree = trees[i].url.substring(indexID, trees[i].url.length-1);
             mapTrees[idTree] = trees[i];
-        }
-        //console.log("url "+ trees[200].url);
-        for(i=0; i<trees.length;i++){
-            for(j=0;j<trees.length;j++){
-                if(trees[i].url==trees[j].url && (trees[i].latitude!==trees[j].latitude || trees[i].longitude!==trees[j].longitude)){
-                    console.log("Doublon!! url i = "+ trees[i].url + "url j = " +trees[j].url + "lat i " + trees[i].latitude + "lat j " + trees[j].latitude + "long i " + trees[i].longitude + "long j" + trees[j].longitude);
-                    doub = true;
-                }
-            }
-        }
-        if(doub==false){
-            console.log("Pas de doublon détecté.");
         }
 
 
