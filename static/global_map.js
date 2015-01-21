@@ -19,6 +19,8 @@ function initialize() {
         latInput.value = event.latLng.lat();
         longInput.value = event.latLng.lng();
     });
+
+
 }
 
 function placeMarker(location) {
@@ -30,7 +32,11 @@ function placeMarker(location) {
     if (lastMarker.length != 0)
     {
         clearMarker();
+        google.maps.event.addListener(marker, 'click', function(event) {
+            alert('click');
+        });
     }
+
     lastMarker = marker;
     
 }
@@ -41,5 +47,7 @@ function clearMarker() {
     lastMarker = null;
 
 }
+
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
