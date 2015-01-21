@@ -1,3 +1,5 @@
+mapTrees = {};
+
 carteApp.controller('TreeListCtrl', function($scope, API, $filter) {
     $scope.trees = [];
     API.getTrees().then(function(trees) {
@@ -5,12 +7,11 @@ carteApp.controller('TreeListCtrl', function($scope, API, $filter) {
         console.log("tree list fully loaded");
         $scope.trees = trees;
         //on contruit une map qui contient l'ID en clé et l'arbre en valeur
-        $scope.mapTrees = {};
-        indexID = 49 //l'URL avant l'ID est composé de 50 caractères 
+        indexID = 50 //l'URL avant l'ID est composé de 50 caractères 
         for (var i=0; i<trees.length; i++)
         {
-            var idTree = trees[i].url.substring(indexID, trees[i].url.lenght-1);
-            $scope.mapTrees[idTree] = trees[i];
+            var idTree = trees[i].url.substring(indexID, trees[i].url.length-1);
+            mapTrees[idTree] = trees[i];
         }
         //console.log("url "+ trees[200].url);
         for(i=0; i<trees.length;i++){
