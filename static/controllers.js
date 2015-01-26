@@ -1,5 +1,3 @@
-
-
 mapTrees = {};
 
 carteApp.controller('TreeListCtrl', function($scope, API, $filter, $http) {
@@ -16,16 +14,11 @@ carteApp.controller('TreeListCtrl', function($scope, API, $filter, $http) {
             mapTrees[idTree] = trees[i];
         }
 
-
         //lecture du fichier
         $http.get('/static/dups.json').then(function(response){
             $scope.data = response.data;
             console.log($scope.data);
         })
-        
-                
-        
-        
         
         //console.log("taille " + trees.length);
     }, function() { // error handling
