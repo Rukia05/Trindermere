@@ -1,5 +1,3 @@
-
-
 mapTrees = {};
 
 carteApp.controller('TreeListCtrl', function($scope, API, $filter, $http) {
@@ -15,7 +13,6 @@ carteApp.controller('TreeListCtrl', function($scope, API, $filter, $http) {
             var idTree = trees[i].url.substring(indexID, trees[i].url.length-1);
             mapTrees[idTree] = trees[i];
         }
-
 
         //lecture du fichier
         $http.get('/static/dups.json').then(function(response){
@@ -35,10 +32,6 @@ carteApp.controller('TreeListCtrl', function($scope, API, $filter, $http) {
             map: map});*/
         })
         console.log("Fichier de duplicatas chargé");
-        
-                
-        
-        
         
         //console.log("taille " + trees.length);
     }, function() { // error handling
