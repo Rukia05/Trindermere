@@ -21,7 +21,20 @@ carteApp.controller('TreeListCtrl', function($scope, API, $filter, $http) {
         $http.get('/static/dups.json').then(function(response){
             $scope.data = response.data;
             console.log($scope.data);
+
+            for (dups in  $scope.data){
+                    
+                    console.log("long " + dups.length);
+                    console.log("lat " +dups[0]);
+                //console.log("id " + dups[0] + dups[1] + dups[3] + dups[4] + dups [5] + dups[6] + dups[7] + " " + dups[6][0]+dups[5][0] + dups[6][2] + dups[6][3] );
+            }
+
+           /* var marqueur = new google.maps.Marker({
+            //console.log();
+            position: new google.maps.LatLng(45.779196981146825, 4.854555241763592),
+            map: map});*/
         })
+        console.log("Fichier de duplicatas chargé");
         
                 
         
