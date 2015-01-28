@@ -1,1 +1,1 @@
-var carteApp = angular.module('carteApp', []);
+var carteApp = angular.module('carteApp', ['uiGmapgoogle-maps']);

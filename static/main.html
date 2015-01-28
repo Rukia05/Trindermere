@@ -1,46 +1,55 @@
 <!DOCTYPE html>
+
 <html lang="fr" ng-app="carteApp">
+
 	<head>
+
 		<meta charset="UTF-8">
+
 		<title>PDC8 - Carte - Module d'ajout de coordonnées</title>
+
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
         <link rel="stylesheet" href="/static/style.css">
 
+
+
 	</head>
+
     
+
     <body>
-    
 
-        <div class="col-md-8">
-            <div ng-controller="TreePatchCtrl" class="row">
-                <h1>Coordonnées</h1>
-                <form ng-submit="patch()" >
-                    <div class="form-group">
-                        <label for="latInput">Latitude</label>
-                        <input type="text" class="form-control" id="latInput"  placeholder="Latitude">
-                    </div>
-                    <div class="form-group">
-                        <label for="longInput">Longitude</label>
-                        <input type="text" class="form-control" id="longInput" placeholder="Longitude">
-                    </div>
-                    <div class="form-group">
-                        <label for="idInput">Numéro d'identification de l'arbre</label>
-                        <input type="text" class="form-control" id="idInput" ng-model="idarbre" placeholder="Identifiant">
-                    </div>
-                    <div class="form-group">
-                        <input type="button" name="patch" value="Mettre à jour" ng-click="patch()" class="btn btn-default">
-                    </div>
-                </form>
-                <form class="navbar-form navbar-left" role="search">
+ <div ng-controller="TreeListCtrl">
 
-                    <div ng-class="{'input-group': searchText}">
-                        <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Rechercher" ng-model="searchText" />                  
+    <div class="col-md-8">
+        <div ng-if="selectedDups">{{selectedDups[0].id}}</div>
+        <div class="row">
+            <h1>Coordonnées</h1>
+            <form ng-submit="patch()">
+                <div class="form-group">
+                    <label for="latInput">Latitude</label>
+                    <input type="text" class="form-control" id="latInput" placeholder="Latitude">
+                </div>
+                <div class="form-group">
+                    <label for="longInput">Longitude</label>
+                    <input type="text" class="form-control" id="longInput" placeholder="Longitude">
+                </div>
+                <div class="form-group">
+                    <label for="idInput">Numéro d'identification de l'arbre</label>
+                    <input type="text" class="form-control" id="idInput" ng-model="idarbre" placeholder="Identifiant">
+                </div>
+                <div class="form-group">
+                    <input type="button" name="patch" value="Mettre à jour" ng-click="patch()" class="btn btn-default">
+                </div>
+            </form>
+            <form class="navbar-form navbar-left" role="search">
 
+                <div ng-class="{'input-group': searchText}">
+                    <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Rechercher" ng-model="searchText" />
 
-
-
-                   <div ng-controller="TreeListCtrl" class="row">
-                        <table id="doublons">
+                    <div class="row">
+                        <table class="table table-bordered" id="doublons">
                             <thead>
                                 <th>Identifiant</th>
                                 <th>Longitude première occurrence</th>
@@ -49,62 +58,60 @@
                                 <th>Latitude deuxième occurrence</th>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="(id, dups) in  data">
-                                        <td>{{id}}</td>
-                                        <td>{{dups[0].longitude}}</td>
-                                        <td>{{dups[0].latitude}}</td>
-                                        <td>{{dups[1].longitude}}</td>
-                                        <td>{{dups[0].latitude}}</td>
+                                <tr ng-click="selectDups(dups)" ng-repeat="(id, dups) in  data">
+                                    <td>{{id}}</td>
+                                    <td>{{dups[0].longitude}}</td>
+                                    <td>{{dups[0].latitude}}</td>
+                                    <td>{{dups[1].longitude}}</td>
+                                    <td>{{dups[1].latitude}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <table id="searchObjResults">
-                            <thead>
-                                <th>Identifiant</th>
-                                <th>Name</th>
-                                <th>Area</th>
-                                <th>Height</th>
-                                <th>Trunk diameter</th>
-                                <th>Crown diameter</th>
-                                <th>Longitude</th>
-                                <th>Latitude</th>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="tree in trees | filter:searchText">
-                                    <td>{{tree.url}}</td>
-                                    <td>{{tree.name}}</td>
-                                    <td>{{tree.area}}</td>
-                                    <td>{{tree.height}}</td>
-                                    <td>{{tree.trunk_diameter}}</td>
-                                    <td>{{tree.crown_diameter}}</td>
-                                    <td>{{tree.longitude}}</td>
-                                    <td>{{tree.latitude}}</td>
-                                </tr>
-                            </tbody>
-                          </tr>
-                        </table>
                     </div>
-                    </div>
-                </form>
+                </div>
+            </form>
         </div>
-        </div>
+    </div>
 
 
-               
-        <div class="col-md-4 map-container" ng-controller="MainCtrl">
-            <h1>Localisation</h1>
-            <div id="map-canvas" onload="initialize()"></div>
-        </div>
+    <div class="col-md-4 ">
+        <h1>Localisation</h1> 
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-if="!selectedDups">
+            </ui-gmap-markers>
+        </ui-gmap-google-map>
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-if="selectedDups">
+            <ui-gmap-markers models='selectedDups' coords="'self'" icon="'{string}'">
+            </ui-gmap-markers>
+        </ui-gmap-google-map>
+    </div>
+</div>
+<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
-        <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBTdqNFiZZ9i0lEZlUEwE8Hpu7YNfxxXf8"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+
+
+        <script src="/static/libs/angular-google-maps.min.js"></script>
+
+        <script src="/static/libs/lodash.min.js"></script>
+
         <script src="/static/global_map.js"></script>
+
         <script src="/static/app.js"></script>
+
         <script src="/static/controllers.js"></script>
+
         <script src="/static/service.js"></script>
 
 
+
+
+
     </body>
+
 </html>
+

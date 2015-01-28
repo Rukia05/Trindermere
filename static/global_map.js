@@ -1,4 +1,4 @@
-var map;
+/*var map;
 var lastMarker=[];
 
 function initialize() {
@@ -24,15 +24,12 @@ function initialize() {
 }
 
 function placeMarker(location) {
-    var marker = new google.maps.Marker({
-        position: location,
-        map: map
-    });
     
     if (lastMarker.length != 0)
     {
         clearMarker();
         google.maps.event.addListener(marker, 'click', function(event) {
+            console.log("click");
             alert('click');
         });
     }
@@ -40,7 +37,6 @@ function placeMarker(location) {
     lastMarker = marker;
     
 }
-
 function clearMarker() {
 
     lastMarker.setMap(null);
@@ -50,4 +46,4 @@ function clearMarker() {
 
 
 
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initialize);*/
