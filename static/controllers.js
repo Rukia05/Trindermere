@@ -108,9 +108,6 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
             var i;
 
             for (i = 0; i < value.length; i++) {
-                console.log("value.length "+ value.length);
-                console.log("id " + id)   ;
-                console.log("key "+ key);
                 if(key===id){
                     console.log("value[i].id " + value[i].id);
                     value.splice(key,value.length);
