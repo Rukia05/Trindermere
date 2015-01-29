@@ -23,24 +23,24 @@
  <div ng-controller="TreeListCtrl">
 
     <div class="col-md-8">
-        <div ng-if="selectedDups">{{selectedDups[0].id}}</div>
+        <div ng-if="selectedDups"></div>
         <div class="row">
             <h1>Coordonnées</h1>
             <form ng-submit="patch()">
                 <div class="form-group">
                     <label for="latInput">Latitude</label>
-                    <input type="text" class="form-control" id="latInput" placeholder="Latitude">
+                    <input type="text" class="form-control" id="latInput" ng-model="latitude" placeholder="Latitude">
                 </div>
                 <div class="form-group">
                     <label for="longInput">Longitude</label>
-                    <input type="text" class="form-control" id="longInput" placeholder="Longitude">
+                    <input type="text" class="form-control" id="longInput" ng-model="longitude" placeholder="Longitude">
                 </div>
                 <div class="form-group">
                     <label for="idInput">Numéro d'identification de l'arbre</label>
                     <input type="text" class="form-control" id="idInput" ng-model="idarbre" placeholder="Identifiant">
                 </div>
                 <div class="form-group">
-                    <input type="button" name="patch" value="Mettre à jour" ng-click="patch()" class="btn btn-default">
+                    <input ng-controller="TreePatchCtrl" type="button" name="patch" value="Mettre à jour" ng-click="patch()" class="btn btn-default">
                 </div>
             </form>
             <form class="navbar-form navbar-left" role="search">
@@ -80,7 +80,7 @@
             </ui-gmap-markers>
         </ui-gmap-google-map>
         <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-if="selectedDups">
-            <ui-gmap-markers models='selectedDups' coords="'self'" icon="'{string}'">
+            <ui-gmap-markers models='selectedDups' coords="'self'" icon="'{string}'" click="'onclicked'">
             </ui-gmap-markers>
         </ui-gmap-google-map>
     </div>
