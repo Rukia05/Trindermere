@@ -85,7 +85,7 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
                     alert("Les champs ne sont pas corrects");
                 } else {
                     API.patchTree(id, data).then(function() {
-                     alert("L'arbre " + id + " a bien été mis à jour")
+                     alert("L'arbre " + id + " a bien &eacute;t&eacute; mis &agrave; jour")
                  });
                 }
             });
@@ -102,7 +102,7 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
             alert("Les champs ne sont pas corrects");
         } else {
             API.patchTree(id, data).then(function() {
-             alert("L'arbre " + id + " a bien été mis à jour")
+             alert("L'arbre " + id + " a bien &eacute;t&eacute; mis &agrave; jour")
          });
         }
     }
