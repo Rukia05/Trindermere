@@ -102,6 +102,30 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
          });
         }
     }
+
+    angular.forEach($scope.data, function(value, key) {
+
+            var i;
+
+            for (i = 0; i < value.length; i++) {
+                console.log("value.length "+ value.length);
+                console.log("id " + id)   ;
+                console.log("key "+ key);
+                if(key===id){
+                    console.log("value[i].id " + value[i].id);
+                    value.splice(key,value.length);
+                    
+                }
+                
+                console.log(value[i]);
+            }
+                
+            
+        });
+     //$scope.data.splice(id,1);
+    
+    
+   
     };
 
 });
