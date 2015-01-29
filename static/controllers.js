@@ -1,15 +1,17 @@
 mapTrees = {};
 
+//Controleur permettant de gerer la liste des arbres sur la page
 carteApp.controller('TreeListCtrl', function($scope, $http,API) {
     $scope.trees = [];
 
 
-
+    //Affichage du tableau pour selection de ligne
     $scope.selectDups = function(dups) {
         $scope.selectedDups = dups;
         console.log(dups);
     };
 
+    //Affichage et centrage de la map
     $scope.map = {
         center: {
             latitude: 45.777403199999990000,
@@ -18,6 +20,7 @@ carteApp.controller('TreeListCtrl', function($scope, $http,API) {
         zoom: 15
     };
 
+    //Recuperation des doublons a partir du fichier json et fonction pour ajouter infos du marqueur dans la fonction de mise à jour quand clic sur le marqueur
     $http.get('/static/dups.json').then(function(response){
         $scope.data = response.data;
         var id = 0;
@@ -42,11 +45,12 @@ carteApp.controller('TreeListCtrl', function($scope, $http,API) {
 
 });
 
+//Controleur permettant la mise a jour dans la base
 carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
 
 
 
-
+    //Mise a jour de la base - fonction déclenchée par clic sur bouton mettre a jour
     $scope.patch = function() {
         var id = $scope.idarbre;
         var data = {longitude: longInput.value, latitude: latInput.value};
@@ -103,6 +107,7 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
         }
     }
 
+    //Fonction permettant la mise a jour du tableau avec suppression des doublons deja cliques
     angular.forEach($scope.data, function(value, key) {
 
             var i;
@@ -119,7 +124,6 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
                 
             
         });
-     //$scope.data.splice(id,1);
     
     
    
@@ -127,6 +131,7 @@ carteApp.controller('TreePatchCtrl', function($scope, $http, API) {
 
 });
 
+//Controleur pour definir variables d'affichage sur la carte
 carteApp.controller('MainCtrl', function ($scope,$http, API) {
     $scope.title = "PDC8 - Carte"
     $scope.latitude = "";
